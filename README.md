@@ -12,6 +12,8 @@ A full-stack collaborative code editor with real-time synchronization, AI-powere
 - 👥 **User Presence**: See who's currently in the room
 - 📋 **Room Management**: Create and join rooms with unique IDs
 
+![image1](./docs/img/img.png)
+
 ## Tech Stack
 
 ### Backend
