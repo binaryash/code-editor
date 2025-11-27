@@ -1,0 +1,117 @@
+.home-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.home-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 400px;
+}
+
+.home-title {
+    margin: 0 0 10px 0;
+    font-size: 32px;
+    color: #333;
+    text-align: center;
+}
+
+.home-subtitle {
+    margin: 0 0 30px 0;
+    color: #666;
+    text-align: center;
+}
+
+.home-section {
+    margin-bottom: 20px;
+}
+
+.home-primary-button {
+    width: 100%;
+    padding: 14px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.home-primary-button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.home-primary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.home-secondary-button {
+    width: 100%;
+    padding: 14px;
+    background: #48bb78;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.2s;
+}
+
+.home-secondary-button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.home-secondary-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.home-input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.home-input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.home-divider {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    position: relative;
+}
+
+.home-divider::before,
+.home-divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #e2e8f0;
+}
+
+.home-divider-text {
+    margin: 0 10px;
+    padding: 0 10px;
+    background: white;
+    color: #999;
+    font-size: 14px;
+}
