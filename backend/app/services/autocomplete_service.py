@@ -1,14 +1,21 @@
+"""Service providing mock autocomplete suggestions for code editing."""
+
 import re
 
 from ..schemas import AutocompleteRequest, AutocompleteResponse
 
 
 class AutocompleteService:
+    """
+    Provides rule-based autocomplete suggestions for supported programming
+    languages.
+    """
+
     @staticmethod
     def get_suggestion(request: AutocompleteRequest) -> AutocompleteResponse:
         """
-        Mock AI autocomplete service.
-        Returns simple rule-based suggestions.
+        Analyzes the code context and cursor position to return a relevant
+        completion suggestion.
         """
         code = request.code
         cursor_pos = request.cursorPosition

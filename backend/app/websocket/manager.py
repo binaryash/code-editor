@@ -1,3 +1,8 @@
+"""
+WebSocket connection manager for real-time collaborative code editing.
+Handles room management, user tracking, and message broadcasting.
+"""
+
 import json
 from datetime import datetime
 from typing import Dict, List, Set
@@ -6,7 +11,16 @@ from fastapi import WebSocket
 
 
 class ConnectionManager:
+    """
+    Manages WebSocket connections, room states, and message broadcasting
+    for collaborative sessions.
+    """
+
     def __init__(self):
+        """
+        Initializes storage for active connections, room code states,
+        and user mappings.
+        """
         # room_id -> list of websockets
         self.active_connections: Dict[str, List[WebSocket]] = {}
         # room_id -> current code state
@@ -15,6 +29,10 @@ class ConnectionManager:
         self.user_ids: Dict[WebSocket, str] = {}
 
     async def connect(self, websocket: WebSocket, room_id: str, user_id: str):
+        """
+        Accepts a new WebSocket connection, joins the specified room,
+        and syncs initial state.
+        """
         await websocket.accept()
         if room_id not in self.active_connections:
             self.active_connections[room_id] = []
@@ -44,6 +62,7 @@ class ConnectionManager:
         )
 
     def disconnect(self, websocket: WebSocket, room_id: str):
+        """Removes a connection from a room and cleans up empty rooms."""
         if room_id in self.active_connections:
             if websocket in self.active_connections[room_id]:
                 self.active_connections[room_id].remove(websocket)
@@ -57,6 +76,7 @@ class ConnectionManager:
         return user_id
 
     def get_room_users(self, room_id: str) -> List[str]:
+        """Returns a list of user IDs currently active in the specified room."""
         if room_id not in self.active_connections:
             return []
         return [
@@ -66,6 +86,10 @@ class ConnectionManager:
     async def broadcast_to_room(
         self, room_id: str, message: dict, exclude: WebSocket = None
     ):
+        """
+        Sends a JSON message to all connected clients in a room,
+        optionally excluding the sender.
+        """
         if room_id not in self.active_connections:
             return
 
@@ -83,6 +107,10 @@ class ConnectionManager:
             self.disconnect(conn, room_id)
 
     async def update_code(self, room_id: str, code: str, websocket: WebSocket):
+        """
+        Updates the stored code state and broadcasts the change to
+        other users in the room.
+        """
         self.room_states[room_id] = code
         user_id = self.user_ids.get(websocket, "unknown")
 
