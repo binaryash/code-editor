@@ -1,6 +1,9 @@
-from sqlalchemy import Column, String, Text, DateTime
 from datetime import datetime
+
+from sqlalchemy import Column, DateTime, String, Text
+
 from .database import Base
+
 
 class Room(Base):
     __tablename__ = "rooms"

@@ -1,4 +1,5 @@
 import re
+
 from ..schemas import AutocompleteRequest, AutocompleteResponse
 
 

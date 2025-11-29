@@ -1,7 +1,9 @@
+import uuid
+
 from sqlalchemy.orm import Session
+
 from ..models import Room
 from ..schemas import RoomCreate
-import uuid
 
 
 class RoomService:

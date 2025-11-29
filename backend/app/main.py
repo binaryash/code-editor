@@ -1,11 +1,13 @@
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, Depends
+import json
+
+from fastapi import Depends, FastAPI, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
-from .database import engine, get_db, Base
-from .routers import rooms, autocomplete
-from .websocket.manager import manager
+
+from .database import Base, engine, get_db
+from .routers import autocomplete, rooms
 from .services.room_service import RoomService
-import json
+from .websocket.manager import manager
 
 # Create database tables
 Base.metadata.create_all(bind=engine)

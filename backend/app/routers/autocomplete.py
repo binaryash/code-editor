@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+
 from ..schemas import AutocompleteRequest, AutocompleteResponse
 from ..services.autocomplete_service import AutocompleteService
 
