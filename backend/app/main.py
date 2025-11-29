@@ -1,3 +1,4 @@
+"""Main FastAPI application module."""
 import json
 
 from fastapi import Depends, FastAPI, WebSocket, WebSocketDisconnect

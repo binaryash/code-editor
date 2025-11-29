@@ -194,8 +194,8 @@ dist-ssr
 *.local
 
 # Cache
-.cache/
-.eslintcache
+.cache
+.eslint
 *.tsbuildinfo
 *.vite
 .vite/

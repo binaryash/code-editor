@@ -1,5 +1,4 @@
 import os
-
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -7,13 +6,12 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-# Use SQLite database
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./pairprogramming.db")
+# Default to a standard local Postgres URL if the env var isn't set
+# Format: postgresql://user:password@host:port/database_name
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-# For SQLite, we need to add connect_args
-engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}  # Needed for SQLite
-)
+# Create engine without SQLite-specific args
+engine = create_engine(DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
