@@ -20,7 +20,7 @@ A full-stack collaborative code editor with real-time synchronization, AI-powere
 - **FastAPI**: Modern Python web framework
 - **WebSockets**: Real-time bidirectional communication
 - **SQLAlchemy**: SQL toolkit and ORM
-- **SQLite**: Lightweight database
+- **PostgreSQL**: SQL Database
 - **Python 3.10+**
 
 ### Frontend
@@ -40,11 +40,11 @@ sequenceDiagram
     participant UserA as User A (Frontend)
     participant UserB as User B (Frontend)
     participant Server as FastAPI Server
-    participant DB as Database (Postgres/SQLite)
+    participant DB as Database (Postgres)
     participant AI as Mock AI Service
-
+
     Note over UserA, Server: WebSocket Connection Established
-
+
     %% Real-time Collaboration Flow
     rect rgb(240, 248, 255)
         note right of UserA: Real-time Editing
@@ -52,7 +52,7 @@ sequenceDiagram
         Server->>DB: Update Room State (Persistence)
         Server-->>UserB: WS: code_update { "code": "def main():" }
     end
-
+
     %% AI Autocomplete Flow
     rect rgb(255, 240, 245)
         note right of UserB: AI Autocomplete
@@ -320,7 +320,8 @@ npm run build
 
 #### Backend (.env)
 ```
-DATABASE_URL=sqlite:///./pairprogramming.db
+DATABASE_URL=postgresql://<postgres_username>:<postgres_password>@localhost:5432/pairprogramming
+
 ```
 
 ## Troubleshooting
