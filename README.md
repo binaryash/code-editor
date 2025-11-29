@@ -33,6 +33,38 @@ A full-stack collaborative code editor with real-time synchronization, AI-powere
 - **Monaco Editor**: VS Code's editor component
 - **Lucide React**: Icon library
 
+### Architecture 
+
+```mermaid 
+sequenceDiagram
+    participant UserA as User A (Frontend)
+    participant UserB as User B (Frontend)
+    participant Server as FastAPI Server
+    participant DB as Database (Postgres/SQLite)
+    participant AI as Mock AI Service
+
+    Note over UserA, Server: WebSocket Connection Established
+
+    %% Real-time Collaboration Flow
+    rect rgb(240, 248, 255)
+        note right of UserA: Real-time Editing
+        UserA->>Server: WS: code_change { "code": "def main():" }
+        Server->>DB: Update Room State (Persistence)
+        Server-->>UserB: WS: code_update { "code": "def main():" }
+    end
+
+    %% AI Autocomplete Flow
+    rect rgb(255, 240, 245)
+        note right of UserB: AI Autocomplete
+        UserB->>UserB: Typos "import " + Waits 600ms
+        UserB->>Server: POST /autocomplete { "code": "import ", "cursor": 7 }
+        Server->>AI: Generate Mock Suggestion
+        AI-->>Server: Return "import os"
+        Server-->>UserB: JSON { "suggestion": "import os" }
+    end
+```
+
+
 ## Prerequisites
 
 - Python 3.10 or higher
